@@ -45,6 +45,7 @@ const HotelCreateUpdateForm = (props) => {
           autoClose: 2500,
           theme: "colored",
         });
+        setShowModal(false);
       })
       .catch((err) => {
         toast.error(`${err?.response?.data?.message}`, {

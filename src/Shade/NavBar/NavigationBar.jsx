@@ -32,8 +32,6 @@ const NavigationBar = () => {
         theme: "colored",
 
       });
-
-      console.error("Registration error:",errorBundles);
     });
   };
 

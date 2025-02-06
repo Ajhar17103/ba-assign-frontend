@@ -1,28 +1,9 @@
-import { createStore, applyMiddleware, combineReducers } from "redux";
-import thunk from "redux-thunk";
-import { composeWithDevTools } from 'redux-devtools-extension';
-import { getProductsReducer } from "../Products/ProductsReducer";
+// store.js
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import hotelReducer from '../Hotels/reducer';
 
 
+const store = createStore(hotelReducer, applyMiddleware(thunk));
 
-const RootReducer = combineReducers({
-  firstSection: addReducerFirstSection,
-  allProducts: getProductsReducer,
-})
-
-
-
-
-let user;
-let initialState = {
-  user: user,
-};
-
-const middleware = [thunk];
-
-const store = createStore(
-  RootReducer,
-  initialState,
-  composeWithDevTools(applyMiddleware(...middleware))
-);
 export default store;
