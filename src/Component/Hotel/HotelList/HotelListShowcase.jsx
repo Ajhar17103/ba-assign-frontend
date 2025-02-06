@@ -20,21 +20,21 @@ const HotelListShowcase = () => {
   const [updateHotelItem, setUpdateHotelItem] = useState({})
   const { hotelList, isLoading, error } = useSelector((state) => state);
 
-  const getAllProducts = (dynamicUrl) => {
-    axiosInstance.get(dynamicUrl)
-      .then((res) => {
-        if (res?.data) {
-          console.log(res?.data)
-          setHotelList(res?.data)
-          setIsLoading(false);
-        }
-      })
-      .catch((err) => {
-        setHotelList([]);
-        setIsLoading(true);
-        console.log(err, 'err');
-      });
-  };
+  // const getAllProducts = (dynamicUrl) => {
+  //   axiosInstance.get(dynamicUrl)
+  //     .then((res) => {
+  //       if (res?.data) {
+  //         console.log(res?.data)
+  //         setHotelList(res?.data)
+  //         setIsLoading(false);
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       setHotelList([]);
+  //       setIsLoading(true);
+  //       console.log(err, 'err');
+  //     });
+  // };
 
   useEffect(() => {
     dispatch(fetchHotels(dynamicUrl));
