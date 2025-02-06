@@ -1,6 +1,6 @@
 // store.js
 import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
+import { thunk } from 'redux-thunk';
 import hotelReducer from '../Hotels/reducer';
 
 

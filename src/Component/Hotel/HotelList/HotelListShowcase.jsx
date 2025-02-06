@@ -45,7 +45,7 @@ const HotelListShowcase = () => {
   const handlePageChange = (apiUrl) => {
     if (apiUrl) { // Check if pageNumber is not null or undefined
       // setIsLoading(true);
-      getAllProducts(apiUrl);
+      // getAllProducts(apiUrl);
       setDynamicUrl(apiUrl)
     }
   };
@@ -101,6 +101,7 @@ const HotelListShowcase = () => {
               autoClose: 2500,
               theme: "colored",
             });
+            dispatch(fetchHotels(dynamicUrl));
           })
           .catch((err) => {
             toast.error(`${err?.response?.data?.error}`, {

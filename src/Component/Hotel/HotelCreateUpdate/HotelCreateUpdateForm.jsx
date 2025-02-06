@@ -5,9 +5,13 @@ import { Form, Button, Alert, Modal } from "react-bootstrap";
 import axiosInstance from "../../../Services/Interceptor";
 import { toast } from "react-toastify";
 import "./Form.css"
+import { useDispatch } from "react-redux";
+import { fetchHotels } from "../../../Redux/Hotels/Action";
 
 const HotelCreateUpdateForm = (props) => {
   const BASE_URL = import.meta.env.VITE_APP_BASE_URL;
+  const dispatch = useDispatch();
+  const [dynamicUrl, setDynamicUrl] = useState(`${BASE_URL}/get-hotels`)
   const { showModal, setShowModal, modalTitle, updateHotelItem, updateHotelStatus, setUpdateHotelItem } = props
   const {
     register,
@@ -77,6 +81,8 @@ const HotelCreateUpdateForm = (props) => {
             autoClose: 2500,
             theme: "colored",
           });
+          setShowModal(false);
+          dispatch(fetchHotels(dynamicUrl));
         })
         .catch((err) => {
           toast.error(`${err?.response?.data?.message}`, {
