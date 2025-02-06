@@ -1,11 +1,6 @@
-// actionTypes.js
-export const GET_HOTELS_REQUEST = 'GET_HOTELS_REQUEST';
-export const GET_HOTELS_SUCCESS = 'GET_HOTELS_SUCCESS';
-export const GET_HOTELS_FAILURE = 'GET_HOTELS_FAILURE';
 
-// actions.js
+import axiosInstance from '../../Services/Interceptor';
 import { GET_HOTELS_REQUEST, GET_HOTELS_SUCCESS, GET_HOTELS_FAILURE } from './actionTypes';
-import axiosInstance from './axiosInstance'; // Your axios instance
 
 export const getHotelsRequest = () => ({
   type: GET_HOTELS_REQUEST,
