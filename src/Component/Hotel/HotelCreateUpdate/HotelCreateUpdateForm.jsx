@@ -28,6 +28,18 @@ const HotelCreateUpdateForm = (props) => {
     }
   }, [updateHotelItem, setValue]);
 
+  const removeExistImg = () => {
+    setUpdateHotelItem({
+      id: updateHotelItem?.id,
+      property_name: updateHotelItem?.property_name,
+      address: updateHotelItem?.address,
+      cost_per_night: updateHotelItem?.cost_per_night,
+      available_rooms: updateHotelItem?.available_rooms,
+      property_image: "",
+      average_rating: updateHotelItem?.average_rating,
+    })
+  }
+
   const onSubmit = (data) => {
     const postData = {
       property_name: data.property_name,
@@ -37,24 +49,46 @@ const HotelCreateUpdateForm = (props) => {
       property_image: data.property_image[0] || null,
       average_rating: parseFloat(data.average_rating),
     };
-    axiosInstance.post(`${BASE_URL}/create-hotels`, postData)
-      .then((res) => {
-        toast.success(`Created Successful`, {
-          position: "top-right",
-          hideProgressBar: false,
-          autoClose: 2500,
-          theme: "colored",
-        });
-      })
-      .catch((err) => {
-        toast.error(`${err?.response?.data?.message}`, {
-          position: "top-right",
-          hideProgressBar: false,
-          autoClose: 2500,
-          theme: "colored",
+    if (updateHotelStatus) {
+      axiosInstance.put(`${BASE_URL}/update-hotels-details/${updateHotelItem?.id}`, postData)
+        .then((res) => {
+          toast.success(`Created Successful`, {
+            position: "top-right",
+            hideProgressBar: false,
+            autoClose: 2500,
+            theme: "colored",
+          });
+        })
+        .catch((err) => {
+          toast.error(`${err?.response?.data?.message}`, {
+            position: "top-right",
+            hideProgressBar: false,
+            autoClose: 2500,
+            theme: "colored",
 
+          });
         });
-      });
+    } else {
+      axiosInstance.post(`${BASE_URL}/create-hotels`, postData)
+        .then((res) => {
+          toast.success(`Created Successful`, {
+            position: "top-right",
+            hideProgressBar: false,
+            autoClose: 2500,
+            theme: "colored",
+          });
+        })
+        .catch((err) => {
+          toast.error(`${err?.response?.data?.message}`, {
+            position: "top-right",
+            hideProgressBar: false,
+            autoClose: 2500,
+            theme: "colored",
+
+          });
+        });
+    }
+
   };
 
   const modalClose = () => {
@@ -125,7 +159,7 @@ const HotelCreateUpdateForm = (props) => {
                 <button
                   type="button"
                   className="cross-btn"
-                  onClick={() => {/* Handle cross button click */ }}
+                  onClick={() => removeExistImg()}
                 >
                   &times;
                 </button>
