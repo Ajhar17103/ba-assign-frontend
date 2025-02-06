@@ -6,15 +6,19 @@ import axiosInstance from '../../../Services/Interceptor';
 import HotelCreateUpdateForm from '../HotelCreateUpdate/HotelCreateUpdateForm';
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchHotels } from '../../../Redux/Hotels/Action';
 
 const HotelListShowcase = () => {
   const BASE_URL = import.meta.env.VITE_APP_BASE_URL;
+  const dispatch = useDispatch();
   const [dynamicUrl, setDynamicUrl] = useState(`${BASE_URL}/get-hotels`)
-  const [hotelList, setHotelList] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  // const [hotelList, setHotelList] = useState([]);
+  // const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [updateHotelItem, setUpdateHotelItem] = useState({})
+  const { hotelList, isLoading, error } = useSelector((state) => state);
 
   const getAllProducts = (dynamicUrl) => {
     axiosInstance.get(dynamicUrl)
@@ -33,13 +37,14 @@ const HotelListShowcase = () => {
   };
 
   useEffect(() => {
-    getAllProducts(dynamicUrl);
-  }, [dynamicUrl]);
+    dispatch(fetchHotels(dynamicUrl));
+  }, [dispatch, dynamicUrl]);
+
 
   // Handle page change
   const handlePageChange = (apiUrl) => {
     if (apiUrl) { // Check if pageNumber is not null or undefined
-      setIsLoading(true);
+      // setIsLoading(true);
       getAllProducts(apiUrl);
       setDynamicUrl(apiUrl)
     }
