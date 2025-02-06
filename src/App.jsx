@@ -7,10 +7,9 @@ import Signup from "./Component/Auth/Register/Signup";
 
 // Lazy loading components
 const AuthLayout = lazy(() => import('./Component/Auth/Layout/AuthLayout'));
-
 const Home = lazy(() => import('./Component/Home/Home'));
-const Products = lazy(() => import('./Component/Shop/Products'));
-const ProductDetails = lazy(() => import('./Component/ProductDetails/ProductDetails'));
+const HotelListShowcase = lazy(() => import('./Component/Hotels/HotelListShowcase'));
+const ProductDetails = lazy(() => import('./Component/HotelDetails/HotelDetails'));
 const ErrorPage = lazy(() => import('./Shade/ErrorPage/ErrorPage'));
 
 function App() {
@@ -24,7 +23,7 @@ function App() {
      {authTokens?    
           <Routes>
           <Route path="/" element={<Home  />}>
-            <Route index element={<Products  />} />
+            <Route index element={<HotelListShowcase  />} />
             <Route path="/product-details/:id" element={<ProductDetails  />} />
           </Route>
 

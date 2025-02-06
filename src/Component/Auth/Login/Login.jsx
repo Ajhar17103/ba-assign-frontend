@@ -33,7 +33,7 @@ const Login = () => {
 		}, 3000); // Delay for toast notification
 	  })
 	  .catch((err)=>{
-		toast.error(`${err?.response?.data?.message}`, {
+		toast.error(`${err?.response?.data?.error}`, {
 		  position: "top-right",
 		  hideProgressBar: false,
 		  autoClose: 2500,
