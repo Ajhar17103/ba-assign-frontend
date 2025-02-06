@@ -1,0 +1,21 @@
+.hotel-image {
+	height: 200px;
+	/* Adjust the height as needed */
+	object-fit: cover;
+	/* Ensures the image maintains its aspect ratio */
+}
+
+.position-relative {
+	position: relative;
+}
+
+.cross-btn {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	background-color: transparent;
+	border: none;
+	font-size: 24px;
+	color: red;
+	cursor: pointer;
+}
