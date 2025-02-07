@@ -20,21 +20,6 @@ const HotelListShowcase = () => {
   const [updateHotelItem, setUpdateHotelItem] = useState({})
   const { hotelList, isLoading, error } = useSelector((state) => state);
 
-  // const getAllProducts = (dynamicUrl) => {
-  //   axiosInstance.get(dynamicUrl)
-  //     .then((res) => {
-  //       if (res?.data) {
-  //         console.log(res?.data)
-  //         setHotelList(res?.data)
-  //         setIsLoading(false);
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       setHotelList([]);
-  //       setIsLoading(true);
-  //       console.log(err, 'err');
-  //     });
-  // };
 
   useEffect(() => {
     dispatch(fetchHotels(dynamicUrl));
@@ -43,9 +28,8 @@ const HotelListShowcase = () => {
 
   // Handle page change
   const handlePageChange = (apiUrl) => {
-    if (apiUrl) { // Check if pageNumber is not null or undefined
+    if (apiUrl) {
       // setIsLoading(true);
-      // getAllProducts(apiUrl);
       setDynamicUrl(apiUrl)
     }
   };
@@ -115,7 +99,7 @@ const HotelListShowcase = () => {
       }
     });
   };
-
+  console.log(hotelList)
 
   if (isLoading) {
     return <Loader />;
@@ -208,11 +192,17 @@ const HotelListShowcase = () => {
 
             </Col>
           ))}
+          {hotelList?.hotels?.length === 0 &&
+            <Col lg={12} md={12} sm={12} className="mb-3 text-center">
+              No Data Found!
+            </Col>
+          }
         </Row>
 
 
+
         {/* Pagination */}
-        <Pagination className="justify-content-end">
+        {hotelList?.hotels?.length !== 0 && <Pagination className="justify-content-end">
           <Pagination.Prev
             onClick={() => handlePageChange(hotelList?.prev_page_url)}
             disabled={!hotelList?.prev_page_url} // Disable if previous is null
@@ -223,7 +213,7 @@ const HotelListShowcase = () => {
             disabled={!hotelList?.next_page_url} // Disable if next is null
             className='cursor-pointer'
           />
-        </Pagination>
+        </Pagination>}
 
         {
           showModal &&

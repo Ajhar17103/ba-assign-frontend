@@ -54,26 +54,38 @@ const HotelCreateUpdateForm = (props) => {
       average_rating: parseFloat(data.average_rating),
     };
     if (updateHotelStatus) {
-      axiosInstance.put(`${BASE_URL}/update-hotels-details/${updateHotelItem?.id}`, postData)
+      axiosInstance.put(`${BASE_URL}/update-hotel/${updateHotelItem?.id}`, postData)
         .then((res) => {
-          toast.success(`Created Successful`, {
-            position: "top-right",
-            hideProgressBar: false,
-            autoClose: 2500,
-            theme: "colored",
-          });
+          if (res.status === 200) {
+            toast.success(`Successfully Updated`, {
+              position: "top-right",
+              hideProgressBar: false,
+              autoClose: 2500,
+              theme: "colored",
+            });
+          } else {
+            toast.error(`Update failed. Please try again.`, {
+              position: "top-right",
+              hideProgressBar: false,
+              autoClose: 2500,
+              theme: "colored",
+            });
+          }
+          setShowModal(false);
+          updateHotelStatus(false);
+          setUpdateHotelItem({});
         })
         .catch((err) => {
-          toast.error(`${err?.response?.data?.message}`, {
+          toast.error(`${err?.response?.data?.message || "Something went wrong!"}`, {
             position: "top-right",
             hideProgressBar: false,
             autoClose: 2500,
             theme: "colored",
-
           });
         });
+
     } else {
-      axiosInstance.post(`${BASE_URL}/create-hotels`, postData)
+      axiosInstance.post(`${BASE_URL}/create-hotel`, postData)
         .then((res) => {
           toast.success(`Created Successful`, {
             position: "top-right",

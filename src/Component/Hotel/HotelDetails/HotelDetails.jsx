@@ -12,11 +12,11 @@ const HotelDetails = () => {
   const decodedId = atob(id); // Decode from Base64
   const [hotelDetailsData, setHotelDetailsData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  const [quantity, setQuantity] = useState(1);
+
 
 
   useEffect(() => {
-    axiosInstance.get(`${BASE_URL}/get-hotels-details/${decodedId}`)
+    axiosInstance.get(`${BASE_URL}/get-hotel-details/${decodedId}`)
       .then((res) => {
         if (res?.data) {
           setHotelDetailsData(res.data);
@@ -31,12 +31,11 @@ const HotelDetails = () => {
   }, []);
 
   const bookHotel = () => {
-    console.log(`Added ${quantity} of "${hotelDetailsData.title}" to cart.`);
   };
 
   // Add to wishlist function
   const addWishlist = (prodItem) => {
-    console.log(`Added ${quantity} of "${hotelDetailsData.title}" to cart.`);
+
   };
 
   if (isLoading) {
@@ -86,25 +85,14 @@ const HotelDetails = () => {
                 >
                   <FaBed className="me-2" /> Book Now
                 </Button>
-                <Button
-                  variant="outline-danger"
-                  className="fw-bold px-4"
-                  onClick={() => addWishlist(hotelDetailsData)}
-                >
-                  <FaHeart className="me-2" /> Add to Wishlist
-                </Button>
-              </div>
-
-              {/* Social Share Buttons */}
-              <div className="d-flex gap-3 mt-3">
-                {/* Facebook Share */}
-                <a
+                 {/* Facebook Share */}
+                 <a
                   href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-outline-danger"
                 >
-                  <FaFacebook className="me-2" /> Share on Facebook
+                Share on  <FaFacebook className="me-2" />
                 </a>
 
                 {/* WhatsApp Share */}
@@ -114,7 +102,7 @@ const HotelDetails = () => {
                   rel="noopener noreferrer"
                   className="btn btn-outline-info"
                 >
-                  <FaWhatsapp className="me-2" /> Share on WhatsApp
+                 Share on <FaWhatsapp className="me-2" />
                 </a>
               </div>
             </div>
