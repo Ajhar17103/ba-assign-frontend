@@ -72,6 +72,33 @@ const axiosInstance = axios.create({
 - **CRUD Operations for managing hotels.**
 - **Reusable API Functions to keep the frontend clean and modular.**
 
+## Dependencies & Their Purpose
+
+### **Core Dependencies**
+- **`react` & `react-dom`**: The main React library for building UI components and rendering them in the browser.
+- **`react-router-dom`**: Enables navigation and routing for single-page applications (SPA).
+
+### **State Management**
+- **`redux`**: Centralized state management.
+- **`react-redux`**: React bindings for Redux.
+- **`redux-thunk`**: Middleware for handling asynchronous Redux actions.
+
+### **API Handling**
+- **`axios`**: Makes HTTP requests to interact with the backend API.
+- **`dotenv`**: Loads environment variables from a `.env` file.
+- **`env-cmd`**: Allows running different environment configurations.
+
+### **UI & Styling**
+- **`react-bootstrap` & `reactstrap`**: Provides pre-built Bootstrap-based UI components.
+- **`sass`**: Enables SCSS support for styling.
+
+### **Form Handling & Validation**
+- **`react-hook-form`**: Handles form state and validation efficiently.
+
+### **Notifications & Alerts**
+- **`react-toastify`**: Displays notifications for success or error messages.
+- **`sweetalert2`**: Provides user-friendly popup alerts.
+
 ## Contributing
 
 **Md Azharul Islam**  
