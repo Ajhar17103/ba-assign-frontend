@@ -22,7 +22,7 @@ const Login = () => {
 				toast.success(`Successfully Login,Redirect Home Page`, {
 					position: "top-right",
 					hideProgressBar: false,
-					autoClose: 2500,
+					autoClose: 1500,
 					theme: "colored",
 				});
 				console.log(res?.data?.access_token)
@@ -30,13 +30,13 @@ const Login = () => {
 				localStorage.setItem('expires_in', res?.data?.expires_in)
 				setTimeout(() => {
 					window.location.reload(); // Redirect to login page
-				}, 3000); // Delay for toast notification
+				}, 1600); // Delay for toast notification
 			})
 			.catch((err) => {
 				toast.error(`${err?.response?.data?.error}`, {
 					position: "top-right",
 					hideProgressBar: false,
-					autoClose: 2500,
+					autoClose: 1500,
 					theme: "colored",
 
 				});
